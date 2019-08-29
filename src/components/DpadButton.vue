@@ -7,8 +7,10 @@
 </template>
 
 <script>
+import config from "../config";
+
 export default {
-  name: "Button",
+  name: "DpadButton",
   props: ["label", "keyId"],
   data() {
     return {
@@ -39,12 +41,23 @@ export default {
       }
     },
     onClick() {
-      fetch("https://rickandmortyapi.com/api/character", { method: "GET" })
+      console.log(`${this.keyId} clicked`);
+
+      fetch(`http://${config.serverHost}:${config.serverPort}/action`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: JSON.stringify({
+          keyPressed: this.keyId,
+          playerToken: this.$attrs.playerToken
+        })
+      })
         .then(response => {
           return response.json();
         })
         .then(json => {
-          this.dump = json.results[0];
+          console.log("new state", json);
         });
     }
   }

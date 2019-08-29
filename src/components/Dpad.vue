@@ -1,23 +1,23 @@
 <template>
   <div class="dpad">
     <div class="dpad__upper-row">
-      <Button label="UP" keyId="u" />
+      <DpadButton label="UP" keyId="u" :playerToken="this.$attrs.playerToken" />
     </div>
     <div class="dpad__bottom-row">
-      <Button label="LEFT" keyId="l" />
-      <Button label="DOWN" keyId="d" />
-      <Button label="RIGHT" keyId="r" />
+      <DpadButton label="LEFT" keyId="l" :playerToken="this.$attrs.playerToken" />
+      <DpadButton label="DOWN" keyId="d" :playerToken="this.$attrs.playerToken" />
+      <DpadButton label="RIGHT" keyId="r" :playerToken="this.$attrs.playerToken" />
     </div>
   </div>
 </template>
 
 <script>
-import Button from "./Button";
+import DpadButton from "./DpadButton";
 
 export default {
   name: "Dpad",
   components: {
-    Button
+    DpadButton
   }
 };
 </script>
