@@ -2,7 +2,7 @@
   <div class="page-container">
     <div class="header-container">
       <img src="../assets/apparat.png" alt="Apparat logo" width="300" />
-      <h2>Snakes!</h2>
+      <h2>Snake!</h2>
     </div>
     <div class="content-container">
       <div class="dpad-container">
