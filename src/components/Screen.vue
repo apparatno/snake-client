@@ -12,19 +12,31 @@
 import uuidv4 from "uuid/v4";
 import config from "../config";
 
+const updateInterval = 500;
+const numHorizontalCells = 20;
+const numVerticalCells = 15;
+const cellWidth = 30;
+const cellHeight = 30;
+const colors = {
+  empty: "#c5ccd1",
+  snake: "#5199db",
+  fruit: "#8acf7e",
+  missing: "#cbcf7e"
+};
+
 export default {
   name: "Screen",
   data() {
     return {
       configKonva: {
-        width: 600,
-        height: 450
+        width: numHorizontalCells * cellWidth,
+        height: numVerticalCells * cellHeight
       },
       grid: []
     };
   },
   mounted() {
-    this.interval = setInterval(() => this.updateGrid(), 500);
+    this.interval = setInterval(() => this.updateGrid(), updateInterval);
   },
   methods: {
     updateGrid() {
@@ -36,57 +48,54 @@ export default {
         .then(response => {
           return response.text();
         })
-        .then(state => {
-          this.parseGrid(state);
+        .then(gameState => {
+          this.parseGrid(gameState);
         });
     },
-    parseGrid(state) {
-      const list = [];
-      var sublist = [];
+    parseGrid(gameState) {
+      const rows = [];
+      var row = [];
 
-      for (let i = 0; i < state.length; i++) {
-        const c = state[i];
+      for (let i = 0; i < gameState.length; i++) {
+        const pixelState = gameState[i];
 
-        if (i > 0 && i % 20 === 0) {
-          list.push(sublist);
-          sublist = [];
-          sublist.push(c);
+        if (i > 0 && i % numHorizontalCells === 0) {
+          rows.push(row);
+          row = [];
+          row.push(pixelState);
         } else {
-          sublist.push(c);
+          row.push(pixelState);
         }
       }
 
-      const width = 30;
-      const height = 30;
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
 
-      for (let i = 0; i < list.length; i++) {
-        const sublist = list[i];
-
-        for (let j = 0; j < sublist.length; j++) {
-          const sym = sublist[j];
+        for (let j = 0; j < row.length; j++) {
+          const pixelState = row[j];
 
           var color = "";
-          switch (sym) {
+          switch (pixelState) {
             case "0":
-              color = "#c5ccd1";
+              color = colors.empty;
               break;
             case "1":
-              color = "#5199db";
+              color = colors.snake;
               break;
             case "2":
-              color = "#8acf7e";
+              color = colors.fruit;
               break;
             default:
-              color = "#cbcf7e";
+              color = colors.missing;
               break;
           }
 
           const rect = {
             id: uuidv4(),
-            y: i * height,
-            x: j * width,
-            width,
-            height,
+            y: i * cellHeight,
+            x: j * cellWidth,
+            width: cellWidth,
+            height: cellHeight,
             fill: color
           };
 

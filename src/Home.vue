@@ -1,8 +1,8 @@
 <template>
   <div class="page-container">
     <div class="header-container">
-      <img src="../assets/apparat.png" alt="Apparat logo" width="300" />
-      <h2>snake</h2>
+      <img src="./assets/apparat.png" alt="Apparat logo" width="300" />
+      <h1>snake</h1>
     </div>
     <div class="content-container">
       <div v-if="isPlaying && playerToken !== ''" class="dpad-container">
@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import config from "../config";
-import Lobby from "./Lobby.vue";
-import Playing from "./Playing.vue";
+import config from "./config";
+import Lobby from "./components/Lobby.vue";
+import Playing from "./components/Playing.vue";
 
 export default {
   name: "Home",
