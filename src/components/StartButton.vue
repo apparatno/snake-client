@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     onClick() {
-      console.log("start button clicked!");
+      console.log("start button clicked");
+
       fetch(`http://${config.serverHost}:${config.serverPort}/play`, {
         method: "POST"
       })
@@ -24,7 +25,11 @@ export default {
           return response.json();
         })
         .then(json => {
+          console.log("started game");
           this.$emit("startedgame", json.playerToken);
+        })
+        .catch(err => {
+          console.log("start game error", err);
         });
     }
   }

@@ -41,24 +41,41 @@ export default {
       }
     },
     onClick() {
-      console.log(`${this.keyId} clicked`);
+      console.log(`move ${this.getDirection(this.keyId)} clicked`);
+
+      const formBody = `keyPressed=${this.keyId}&playerToken=${this.$attrs.playerToken}`;
 
       fetch(`http://${config.serverHost}:${config.serverPort}/action`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json"
         },
-        body: JSON.stringify({
-          keyPressed: this.keyId,
-          playerToken: this.$attrs.playerToken
-        })
+        body: formBody
       })
         .then(response => {
-          return response.json();
+          return response.text();
         })
-        .then(json => {
-          console.log("new state", json);
+        .then(() => {
+          console.log(`moved ${this.getDirection(this.keyId)}`);
+        })
+        .catch(err => {
+          console.log("move error", err);
         });
+    },
+    getDirection(keyId) {
+      switch (keyId) {
+        case "u":
+          return "up";
+        case "d":
+          return "down";
+        case "l":
+          return "left";
+        case "r":
+          return "right";
+        default:
+          return "UNKNOWN";
+      }
     }
   }
 };

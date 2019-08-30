@@ -57,8 +57,8 @@ func main() {
 			panic(err)
 		}
 
-		keyPressed := r.PostFormValue("keyPressed")
-		playerToken := r.PostFormValue("playerToken")
+		keyPressed := r.Form.Get("keyPressed")
+		playerToken := r.Form.Get("playerToken")
 
 		log.Printf("/action keyPressed=%s playerToken=%s", keyPressed, playerToken)
 
@@ -75,6 +75,11 @@ func main() {
 		dataJson, _ := json.Marshal(data)
 
 		_, _ = w.Write(dataJson)
+	})
+
+	server.HandleFunc("/screen", func(w http.ResponseWriter, r *http.Request) {
+		setCors(&w)
+		_, _ = w.Write([]byte("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011100000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"))
 	})
 
 	log.Printf("mock server started on port %s", port)

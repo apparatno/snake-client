@@ -8,11 +8,14 @@
       <div v-if="isPlaying && playerToken !== ''" class="dpad-container">
         <Playing :playerToken="playerToken" />
       </div>
-      <div v-else-if="isPlaying && playerToken === ''">
-        <h2>another user is playing :(</h2>
+      <div v-else-if="isPlaying && playerToken === ''" class="game-in-session">
+        <h2>Another user is playing right now</h2>
       </div>
-      <div v-else>
+      <div v-else-if="!hasError">
         <Lobby v-on:playgame="showGame" />
+      </div>
+      <div v-else-if="hasError" class="error-container">
+        <p>{{errorMessage}}</p>
       </div>
     </div>
   </div>
@@ -32,7 +35,9 @@ export default {
   data() {
     return {
       playerToken: "",
-      isPlaying: false
+      isPlaying: false,
+      hasError: false,
+      errorMessage: ""
     };
   },
   mounted() {
@@ -52,6 +57,16 @@ export default {
         .then(json => {
           console.log("fetched initial game state", json);
           this.isPlaying = json.status === "playing";
+        })
+        .catch(err => {
+          console.log("fetch initial game state error", err);
+          this.hasError = true;
+
+          if (err.toString().includes("NetworkError")) {
+            this.errorMessage = "Error connecting to server";
+          } else {
+            this.errorMessage = err;
+          }
         });
     }
   }
@@ -59,4 +74,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.error-container {
+  padding: 15px;
+  background-color: #db5c5c;
+  border-radius: 10px;
+}
+.game-in-session {
+  padding: 15px;
+  background-color: #5ca6db;
+  border-radius: 10px;
+}
 </style>

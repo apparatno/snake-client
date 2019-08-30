@@ -1,5 +1,5 @@
 <template>
-  <div class="lobby-container">
+  <div>
     <StartButton v-on:startedgame="startedGame" />
   </div>
 </template>
@@ -14,12 +14,8 @@ export default {
   },
   methods: {
     startedGame(playerToken) {
-      console.log("started game", playerToken);
       this.$emit("playgame", playerToken);
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
