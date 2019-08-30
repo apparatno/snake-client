@@ -63,8 +63,9 @@ export default {
           rows.push(row);
           row = [];
           row.push(pixelState);
+        } else {
+          row.push(pixelState);
         }
-        row.push(pixelState);
       }
       rows.push(row);
 
