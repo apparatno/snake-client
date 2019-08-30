@@ -1,12 +1,12 @@
 <template>
   <div class="dpad">
     <div class="dpad__upper-row">
-      <DpadButton label="UP" keyId="u" :playerToken="this.$attrs.playerToken" />
+      <DpadButton keyId="u" :playerToken="this.$attrs.playerToken" />
     </div>
     <div class="dpad__bottom-row">
-      <DpadButton label="LEFT" keyId="l" :playerToken="this.$attrs.playerToken" />
-      <DpadButton label="DOWN" keyId="d" :playerToken="this.$attrs.playerToken" />
-      <DpadButton label="RIGHT" keyId="r" :playerToken="this.$attrs.playerToken" />
+      <DpadButton keyId="l" :playerToken="this.$attrs.playerToken" />
+      <DpadButton keyId="d" :playerToken="this.$attrs.playerToken" />
+      <DpadButton keyId="r" :playerToken="this.$attrs.playerToken" />
     </div>
   </div>
 </template>

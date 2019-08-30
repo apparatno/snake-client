@@ -11,7 +11,7 @@ import config from "../config";
 
 export default {
   name: "DpadButton",
-  props: ["label", "keyId"],
+  props: ["keyId"],
   data() {
     return {
       iconName: ""
