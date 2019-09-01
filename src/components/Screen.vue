@@ -60,7 +60,7 @@ export default {
       this.interval = setInterval(() => this.updateGrid(), updateInterval);
     },
     updateGrid() {
-      console.log("update grid");
+      // console.log("update grid");
 
       fetch(`http://${config.serverHost}:${config.serverPort}/screen`)
         .then(response => {
@@ -129,16 +129,28 @@ export default {
               break;
           }
 
+          // Only set the minimum required fields on every update loop
           const rect = {
-            id: uuidv4(),
             y: i * cellHeight,
             x: j * cellWidth,
-            width: cellWidth,
-            height: cellHeight,
             fill: color
           };
 
-          this.grid.push(rect);
+          // Check if we already have a rect on this X,Y position
+          const existingRect = this.grid.find(
+            r => r.x === rect.x && r.y === rect.y
+          );
+
+          if (existingRect) {
+            // If we have a rect, only update the color
+            existingRect.fill = rect.fill;
+          } else {
+            // If this is a new rect, set one-time/static fields only once
+            rect.id = uuidv4();
+            rect.width = cellWidth;
+            rect.height = cellHeight;
+            this.grid.push(rect);
+          }
         }
       }
     }
