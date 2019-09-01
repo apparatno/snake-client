@@ -1,7 +1,9 @@
 <template>
-  <div class="dpad-container">
-    <Screen />
-    <Dpad :playerToken="this.$attrs.playerToken" />
+  <div class="playing">
+    <div class="screen-container">
+      <Screen v-on:gameover="gameOver" v-on:restartgame="restartGame" />
+    </div>
+    <Dpad :playerToken="this.$attrs.playerToken" :disabled="this.isGameOver" />
   </div>
 </template>
 
@@ -14,9 +16,26 @@ export default {
   components: {
     Dpad,
     Screen
+  },
+  data() {
+    return {
+      isGameOver: false
+    };
+  },
+  methods: {
+    gameOver() {
+      this.isGameOver = true;
+    },
+    restartGame(playerToken) {
+      this.isGameOver = false;
+      this.$emit("restartgame", playerToken);
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.screen-container {
+  margin-bottom: 20px;
+}
 </style>

@@ -1,6 +1,13 @@
 <template>
   <div class="button-container">
-    <div class="button" type="button" role="button" v-on:click="onClick">
+    <div
+      class="button"
+      type="button"
+      role="button"
+      v-on:click="onClick"
+      v-bind:class="{ 'button--disabled': this.$attrs.disabled }"
+      v-bind:disabled="this.$attrs.disabled"
+    >
       <v-icon class="button__icon" :name="iconName" />
     </div>
   </div>
@@ -41,6 +48,10 @@ export default {
       }
     },
     onClick() {
+      if (this.$attrs.disabled) {
+        return;
+      }
+
       console.log(`move ${this.getDirection(this.keyId)} clicked`);
 
       const formBody = `keyPressed=${this.keyId}&playerToken=${this.$attrs.playerToken}`;
@@ -106,6 +117,17 @@ export default {
 
   &__icon {
     width: 30px;
+  }
+
+  &--disabled {
+    background-color: #b8b8b8;
+    cursor: not-allowed;
+
+    &:hover {
+      transform: none;
+      background-color: #b8b8b8;
+      box-shadow: 10px 10px 5px -3px rgba(0, 0, 0, 0.2);
+    }
   }
 }
 </style>

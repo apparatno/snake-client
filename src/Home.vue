@@ -6,7 +6,7 @@
     </div>
     <div class="content-container">
       <div v-if="isPlaying && playerToken !== ''" class="dpad-container">
-        <Playing :playerToken="playerToken" />
+        <Playing :playerToken="playerToken" v-on:restartgame="restartGame" />
       </div>
       <div v-else-if="isPlaying && playerToken === ''" class="game-in-session">
         <h2>Another user is playing right now</h2>
@@ -44,6 +44,11 @@ export default {
     this.getGameState();
   },
   methods: {
+    restartGame(playerToken) {
+      console.log("restart game", playerToken);
+      this.playerToken = playerToken;
+      this.isPlaying = true;
+    },
     showGame(playerToken) {
       console.log("show game", playerToken);
       this.playerToken = playerToken;
