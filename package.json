@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue serve",
+    "serve": "vue serve ./src/main.js",
     "build": "vue build ./src/main.js",
     "lint": "vue lint"
   },
