@@ -69,6 +69,8 @@ export default {
 
           if (err.toString().includes("NetworkError")) {
             this.errorMessage = "Error connecting to server";
+          } else if (err.toString().includes("TypeError: Failed to fetch")) {
+            this.errorMessage = "Server is not up";
           } else {
             this.errorMessage = err;
           }

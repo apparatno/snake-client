@@ -102,12 +102,17 @@ export default {
   background-color: #87a662;
   border-color: #809096;
   border-style: none;
-  width: 125px;
+  width: 120px;
   height: 75px;
   transition: all 0.1s ease-in-out;
   font-size: 12pt;
   cursor: pointer;
   box-shadow: 10px 10px 5px -3px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 800px) {
+    width: 90px;
+    height: 50px;
+  }
 
   &:hover {
     transform: scale(1.05);

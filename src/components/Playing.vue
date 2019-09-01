@@ -3,7 +3,9 @@
     <div class="screen-container">
       <Screen v-on:gameover="gameOver" v-on:restartgame="restartGame" />
     </div>
-    <Dpad :playerToken="this.$attrs.playerToken" :disabled="this.isGameOver" />
+    <div class="dpad-container">
+      <Dpad :playerToken="this.$attrs.playerToken" :disabled="this.isGameOver" />
+    </div>
   </div>
 </template>
 
@@ -37,5 +39,8 @@ export default {
 <style lang="scss" scoped>
 .screen-container {
   margin-bottom: 20px;
+}
+.dpad-container {
+  margin-bottom: 40px;
 }
 </style>

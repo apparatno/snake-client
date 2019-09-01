@@ -23,8 +23,8 @@ import StartButton from "./StartButton";
 const updateInterval = 500;
 const numHorizontalCells = 20;
 const numVerticalCells = 15;
-const cellWidth = 30;
-const cellHeight = 30;
+const cellWidth = 12;
+const cellHeight = 12;
 const colors = {
   empty: "#c5ccd1",
   snake: "#5199db",
@@ -159,6 +159,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$boxWidth: 550px;
+$boxHeight: 350px;
+
+$boxWidthMob: 100%;
+$boxHeightMob: 250px;
+
 .screen {
   display: flex;
   justify-content: center;
@@ -167,16 +173,26 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 600px;
-  height: 450px;
+  width: $boxWidth;
+  height: $boxHeight;
   background-color: #c5ccd1;
+
+  @media (max-width: 800px) {
+    width: $boxWidthMob;
+    height: $boxHeightMob;
+  }
 }
 .error-message {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 600px;
-  height: 450px;
+  width: $boxWidth;
+  height: $boxHeight;
   background-color: #c5ccd1;
+
+  @media (max-width: 800px) {
+    width: $boxWidthMob;
+    height: $boxHeightMob;
+  }
 }
 </style>
