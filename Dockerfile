@@ -1,6 +1,11 @@
-# Build the app with "npm run build" before running docker
+FROM ebiven/vue-cli AS buildstep
+RUN npm i -g @vue/cli-service-global
+WORKDIR /code
+ADD . /code
+RUN cd /code && npm install && npm rebuild node-sass && npm run build
+
 FROM node
 RUN npm i -g serve
-ADD ./dist ./app
+COPY --from=buildstep /code/dist /app
 EXPOSE 5000
-CMD serve ./app
+CMD serve /app
