@@ -8,10 +8,10 @@ const config = {
     serverPort: '8081',
   },
   prod: {
-    serverHost: '10.0.0.155',
-    serverPort: '8080',
+    serverHost: 'api.snake.apparat.no',
+    serverPort: '80',
   },
 };
 
 // Bytt ut gjeldende miljø her:
-export default config.dev;
+export default config.prod;
