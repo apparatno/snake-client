@@ -56,7 +56,7 @@ export default {
 
       const formBody = `keyPressed=${this.keyId}&playerToken=${this.$attrs.playerToken}`;
 
-      fetch(`http://${config.serverHost}:${config.serverPort}/action`, {
+      fetch(`${config.serverHost}:${config.serverPort}/action`, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
