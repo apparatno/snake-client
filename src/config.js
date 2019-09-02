@@ -9,7 +9,7 @@ const config = {
   },
   prod: {
     serverHost: 'https://api.snake.apparat.no',
-    serverPort: '80',
+    serverPort: '',
   },
 };
 
