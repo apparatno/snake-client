@@ -18,7 +18,7 @@ export default {
     onClick() {
       console.log("start button clicked");
 
-      fetch(`${config.serverHost}:${config.serverPort}/play`, {
+      fetch(`${config.serverHost}${config.serverPort}/play`, {
         method: "POST"
       })
         .then(response => {

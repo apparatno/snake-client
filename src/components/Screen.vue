@@ -62,7 +62,7 @@ export default {
     updateGrid() {
       // console.log("update grid");
 
-      fetch(`${config.serverHost}:${config.serverPort}/screen`)
+      fetch(`${config.serverHost}${config.serverPort}/screen`)
         .then(response => {
           switch (response.status) {
             case 200:

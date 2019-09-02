@@ -55,7 +55,7 @@ export default {
       this.isPlaying = true;
     },
     getGameState() {
-      fetch(`${config.serverHost}:${config.serverPort}/state`, {
+      fetch(`${config.serverHost}${config.serverPort}/state`, {
         method: "GET"
       })
         .then(response => response.json())
