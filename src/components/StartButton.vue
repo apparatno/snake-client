@@ -16,6 +16,7 @@ export default {
   },
   methods: {
     onClick() {
+      // eslint-disable-next-line no-console
       console.log("start button clicked");
 
       fetch(`${config.serverHost}${config.serverPort}/play`, {
@@ -25,10 +26,12 @@ export default {
           return response.json();
         })
         .then(json => {
+          // eslint-disable-next-line no-console
           console.log("started game");
           this.$emit("startedgame", json.playerToken);
         })
         .catch(err => {
+          // eslint-disable-next-line no-console
           console.log("start game error", err);
         });
     }

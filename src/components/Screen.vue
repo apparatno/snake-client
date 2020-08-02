@@ -60,7 +60,8 @@ export default {
       this.interval = setInterval(() => this.updateGrid(), updateInterval);
     },
     updateGrid() {
-      // console.log("update grid");
+      // eslint-disable-next-line no-console
+      console.log("update grid");
 
       fetch(`${config.serverHost}${config.serverPort}/screen`)
         .then(response => {
@@ -92,7 +93,7 @@ export default {
     },
     parseGrid(gameState) {
       const rows = [];
-      var row = [];
+      let row = [];
 
       for (let i = 0; i < gameState.length; i++) {
         const pixelState = gameState[i];
@@ -113,7 +114,7 @@ export default {
         for (let j = 0; j < row.length; j++) {
           const pixelState = row[j];
 
-          var color = "";
+          let color = "";
           switch (pixelState) {
             case "0":
               color = colors.empty;

@@ -45,11 +45,13 @@ export default {
   },
   methods: {
     restartGame(playerToken) {
+      // eslint-disable-next-line no-console
       console.log("restart game", playerToken);
       this.playerToken = playerToken;
       this.isPlaying = true;
     },
     showGame(playerToken) {
+      // eslint-disable-next-line no-console
       console.log("show game", playerToken);
       this.playerToken = playerToken;
       this.isPlaying = true;
@@ -60,10 +62,12 @@ export default {
       })
         .then(response => response.json())
         .then(json => {
+          // eslint-disable-next-line no-console
           console.log("fetched initial game state", json);
           this.isPlaying = json.status === "playing";
         })
         .catch(err => {
+          // eslint-disable-next-line no-console
           console.log("fetch initial game state error", err);
           this.hasError = true;
 

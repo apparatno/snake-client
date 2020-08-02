@@ -52,7 +52,7 @@ export default {
         return;
       }
 
-      console.log(`move ${this.getDirection(this.keyId)} clicked`);
+//      console.log(`move ${this.getDirection(this.keyId)} clicked`);
 
       const formBody = `keyPressed=${this.keyId}&playerToken=${this.$attrs.playerToken}`;
 
@@ -68,9 +68,11 @@ export default {
           return response.text();
         })
         .then(() => {
+          // eslint-disable-next-line no-console
           console.log(`moved ${this.getDirection(this.keyId)}`);
         })
         .catch(err => {
+          // eslint-disable-next-line no-console
           console.log("move error", err);
         });
     },
